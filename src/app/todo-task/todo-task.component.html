@@ -1,0 +1,30 @@
+@if(task){
+<div
+  class="todo-task"
+  [class.lowPriority]="task.priority === 0"
+  [class.normalPriority]="task.priority === 1"
+  [class.highPriority]="task.priority === 2"
+  [class.completedTask]="task.isCompleted === true"
+>
+  <h2 class="todo-task-header">To-Do Task #{{ task.id }}</h2>
+  <p class="todo-task-priority">
+    {{
+      task.priority === 0
+        ? "Low Priority"
+        : task.priority === 1
+        ? "Normal Priority"
+        : "High Priority"
+    }}
+  </p>
+  <hr />
+  <h3 class="todo-task-title">{{ task.title }}</h3>
+  <ul class="todo-task-items">
+    @for (item of task.items; track $index) {
+    <li>{{ item }}</li>
+    }
+  </ul>
+  <hr />
+  <p>{{ task.isCompleted == true ? "Completed" : "Not Completed" }}</p>
+  <h5 class="todo-task-date">Creation date: {{ task.date.toDateString() }}</h5>
+</div>
+}
